@@ -31,3 +31,6 @@ jobRole.addEventListener('change', e => {
 //user choose design first then color option
 
 // disable the color select element
+
+document.querySelector('select[id="color"]').disabled = true; // disables the color element from being selected
+
