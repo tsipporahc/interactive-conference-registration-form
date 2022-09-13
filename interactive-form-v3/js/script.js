@@ -118,8 +118,6 @@ activities.addEventListener('change', e => {
     console.log(dataCost);
     console.log(totalCost += dataCost); */
 
-
-
         if (e.target.checked === true) {
             totalCost += dataCost;
             console.log(totalCost);
@@ -128,7 +126,7 @@ activities.addEventListener('change', e => {
             totalCost -= dataCost;
             console.log(totalCost); 
         }
-
-
+    let html = `Total $${totalCost}`;
+    displayPrice.innerHTML = html;
 
 });
