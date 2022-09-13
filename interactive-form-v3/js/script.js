@@ -52,7 +52,7 @@ color.disabled = true; // disables the color element from being selected
 
 const design = document.querySelector('select[id="design"]'); 
 
-const colorOptions = color.children; // returns an html collection
+const colorOptions = color.children; // dom transversal, returns an html collection
 
 design.addEventListener('change', e => {
     color.disabled = false; // enables color dropdown
@@ -71,8 +71,8 @@ design.addEventListener('change', e => {
             colorOptions[i].selected = true; // ?? What does this mean? Add a selected attribute to true. 
         } 
         else {
-            colorOptions[i].hidden = true;
-            colorOptions[i].selected = false;
+            colorOptions[i].hidden = true; 
+            colorOptions[i].selected = false; // you can also remove attribute
             
         }
     }
@@ -106,7 +106,7 @@ let totalCost = 0; // number, we will add to
 
 //console.log(activities); 
 //console.log(initialCost); 
-console.log(totalCost); // 0
+//console.log(totalCost); // 0
 
 
 activities.addEventListener('change', e => {
@@ -124,7 +124,64 @@ activities.addEventListener('change', e => {
         } else {
             totalCost -= dataCost;
         }
-    let html = `Total $${totalCost}`; // display price on page
+    let html = `Total $${totalCost}`; // display price on page, dynamically inserts total cost into string
     displayPrice.innerHTML = html;
 
 });
+
+
+/* 
+*
+* "Payment Info" Section
+*
+* set up default payment method to credit card and display credit card inputs, hide paypal, bitcoin options
+*
+* when user clicks paypal, display paypal info
+*
+* when user clicks bitcoin, display bitcoin info
+*/
+
+
+const payment = document.getElementById('payment'); // select id=payment
+const paymentOptions = payment.children; // dom transversal, options(4)
+const paypal = document.getElementById('paypal'); //div#paypal info box
+const bitcoin = document.getElementById('bitcoin'); // div#bitcoin info box
+
+/* console.log(payment); 
+console.log(paymentOptions); 
+console.log(paymentOptions[1]);// [0] is select payment, [1] credit card, [2] paypal , [3] bitcoin
+console.log(paypal);
+console.log(bitcoin);   */
+
+paypal.hidden = true;
+bitcoin.hidden = true;
+paymentOptions[1].selected = true; // or you can use paymentOptions[1].setAttribute('selected', 'true')
+
+const creditcard = document.querySelector('div[id="credit-card"]');
+console.log(creditcard);
+
+payment.addEventListener('change', e =>{
+    if (e.target.value === paypal.id) {
+        creditcard.hidden = true;
+        paypal.hidden = false;
+        bitcoin.hidden = true;
+
+    } else if (e.target.value === bitcoin.id) {
+        creditcard.hidden = true;
+        paypal.hidden = true;
+        bitcoin.hidden = false;
+    } else {
+        creditcard.hidden = false;
+        paypal.hidden = true;
+        bitcoin.hidden = true;
+
+    }
+
+});
+
+
+
+
+
+
+
