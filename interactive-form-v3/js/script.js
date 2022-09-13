@@ -181,7 +181,80 @@ payment.addEventListener('change', e =>{
 
 
 
+/* 
+*
+* "Form Validation"
+*
+* check for user requirements
+* check for valid inputs
+*
+*/
+
+const form = document.querySelector('form');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const cardNumInput = document.getElementById('cc-num');
+const zipcodeInput = document.getElementById('zip');
+const cvvInput = document.getElementById('cvv');
 
 
+
+
+form.addEventListener('submit', e =>  { //attaches event handler
+   
+    isValidName(nameInput.value); // why i dont need to pass an arguement here?
+   
+   
+    // if invalid call  e.preventDefault(); // stop default submittion
+
+
+    console.log(nameInput.value);
+    console.log('form has been submitted');
+    e.preventDefault();
+});
+
+
+
+function isValidName(name) { // checks the name
+
+    if (/^[^\s][a-z|\s]+$/i.test(name)) {
+        return console.log(true); 
+    } else {
+        return console.log(false);
+    }
+}
+
+
+/* 
+
+regular expressions 
+
+name - cannot be blank
+/^[a-z|\s]+$/i
+
+email address - dave@teamtreehouse.com
+    resource - https://huddle.zendesk.com/hc/en-us/articles/360001092034-Special-characters-not-supported-in-email-addresses-
+
+/^[^@\s]+@[^@\s]+\.(com)$/i - all characters except @ sign or space
+
+Register for Activities - at least one select
+activites.selected = true;
+
+if creditcard 
+if paymentOptions[1].selected = true;
+then - 
+
+credit card field - 13 to 16 number {13,16}, ^ dashes, ^ spaces
+/^\d{13,16}[^\-]+[^\s]+$/
+/^\d{13,16}$/
+
+zipcode
+/^\d{5}$/
+
+cvv 
+/^\d{3}$/
+
+
+*/
 
 
