@@ -118,15 +118,13 @@ activities.addEventListener('change', e => {
     console.log(dataCost);
     console.log(totalCost += dataCost); */
 
-        if (e.target.checked === true) {
+        if (e.target.checked) {
             totalCost += dataCost;
-            console.log(totalCost);
 
         } else {
             totalCost -= dataCost;
-            console.log(totalCost); 
         }
-    let html = `Total $${totalCost}`;
+    let html = `Total $${totalCost}`; // display price on page
     displayPrice.innerHTML = html;
 
 });
