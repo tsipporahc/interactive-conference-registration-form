@@ -11,8 +11,14 @@ document.getElementById('name').focus();
 document.getElementById('other-job-role').style.display = "none";
 
 
-// select element listens for changes to its state
-//job role - drop down selection menu
+/* 
+*
+* EVENT LISTENER for "Job Role" Dropdown menu
+*
+* select element listens for changes to its state
+* job role - drop down selection menu 
+*
+*/
 
 const jobRole = document.querySelector('select[id="title"]'); 
 
@@ -32,5 +38,52 @@ jobRole.addEventListener('change', e => {
 
 // disable the color select element
 
-document.querySelector('select[id="color"]').disabled = true; // disables the color element from being selected
+const color = document.querySelector('select[id="color"]'); // references the color <select> element - returns the whole node list
+color.disabled = true; // disables the color element from being selected
 
+/* 
+*
+* EVENT LISTENER for "Design" Dropdown Menu
+*
+* select element listens for changes to its state
+* job role - drop down selection menu 
+*
+*/
+
+const design = document.querySelector('select[id="design"]'); 
+
+const colorOptions = color.children; // returns an html collection
+
+design.addEventListener('change', e => {
+    color.disabled = false; // enables color dropdown
+
+
+    for (let i = 1; i < colorOptions.length; i++ ) {
+        
+        const dataTheme = colorOptions[i].getAttribute('data-theme');
+        const designValue = e.target.value;
+
+        console.log(designValue);
+        console.log(dataTheme);
+
+        if (designValue === dataTheme) { // show data theme options
+            colorOptions[i].hidden = false; // hidden is a property
+            colorOptions[i].selected = true; // ?? What does this mean? Add a selected attribute to true. 
+        } 
+        else {
+            colorOptions[i].hidden = true;
+            colorOptions[i].selected = false;
+            
+        }
+    }
+});
+
+
+/* 
+*
+* "Register for Activities" Section
+*
+* select element listens for changes to its state
+* job role - drop down selection menu 
+*
+*/
