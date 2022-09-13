@@ -57,14 +57,14 @@ const colorOptions = color.children; // returns an html collection
 design.addEventListener('change', e => {
     color.disabled = false; // enables color dropdown
 
+// About the loop - colorOptions html collection
 
     for (let i = 1; i < colorOptions.length; i++ ) {
         
         const dataTheme = colorOptions[i].getAttribute('data-theme');
         const designValue = e.target.value;
 
-        console.log(designValue);
-        console.log(dataTheme);
+        // About the Conditional - if the designValue is equal to one of the data theme (found in color options), then show that color option. 
 
         if (designValue === dataTheme) { // show data theme options
             colorOptions[i].hidden = false; // hidden is a property
@@ -78,12 +78,57 @@ design.addEventListener('change', e => {
     }
 });
 
+/* About hidden and selected attributes
+** 'Selected' attribute can determine which option element is displayed in the select field.
+** 'Hidden' attribute can prevent option elements from being displayed in the drop down menu.
+*/
+
+
 
 /* 
 *
 * "Register for Activities" Section
 *
-* select element listens for changes to its state
-* job role - drop down selection menu 
+* when users select or deselect activities, the total cost correctly updates
+*
+* when user select activities, it strikes out other activities that have a time conflict 
 *
 */
+
+/* const activities = document.getElementById('activities-box');
+const label = activities.children;
+
+console.log(label); */
+
+const activities =  document.getElementById('activities'); // register  for activities field set
+let displayPrice = document.getElementById('activities-cost'); // total p element
+let totalCost = 0; // number, we will add to
+
+//console.log(activities); 
+//console.log(initialCost); 
+console.log(totalCost); // 0
+
+
+activities.addEventListener('change', e => {
+
+    let dataCost = e.target.getAttribute('data-cost');
+    dataCost = parseInt(dataCost); // price of activity
+    
+/*     console.log(totalCost);
+    console.log(dataCost);
+    console.log(totalCost += dataCost); */
+
+
+
+        if (e.target.checked === true) {
+            totalCost += dataCost;
+            console.log(totalCost);
+
+        } else {
+            totalCost -= dataCost;
+            console.log(totalCost); 
+        }
+
+
+
+});
