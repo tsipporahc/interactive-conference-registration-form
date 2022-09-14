@@ -158,7 +158,6 @@ bitcoin.hidden = true;
 paymentOptions[1].selected = true; // or you can use paymentOptions[1].setAttribute('selected', 'true')
 
 const creditcard = document.querySelector('div[id="credit-card"]');
-console.log(creditcard);
 
 payment.addEventListener('change', e =>{
     if (e.target.value === paypal.id) {
@@ -192,6 +191,7 @@ payment.addEventListener('change', e =>{
 
 const form = document.querySelector('form');
 const nameInput = document.getElementById('name');
+//const nameInputValue = nameInput.value;
 const emailInput = document.getElementById('email');
 const cardNumInput = document.getElementById('cc-num');
 const zipcodeInput = document.getElementById('zip');
@@ -201,26 +201,164 @@ const cvvInput = document.getElementById('cvv');
 
 
 form.addEventListener('submit', e =>  { //attaches event handler
-   
-    isValidName(nameInput.value); // why i dont need to pass an arguement here?
-   
+    //e.preventDefault();
+
+    isValidName(nameInput);
+
+    function isValidName(name) { // checks the name
+        const nameInputValue = name.value;
+        console.log(nameInputValue);
+        const nameREGEX = /[^\s][a-z|\s]*$/i;
+        console.log(nameREGEX);
+        let nameResult = nameREGEX.test(nameInputValue);
+        console.log(nameResult);
+        if (nameResult === true) {
+            console.log(true);
+            console.log('form has been submitted');
+            return true;
+            //return console.log(validName); 
+        } else {
+            console.log(false);
+            console.log('name invalid. try again');
+            e.preventDefault();
+            //validName === false;
+            //console.log(validName);
+            return false;
+        }
+    }
+
+
+
+/*     if (validName === false) {
+        e.preventDefault(); 
+    } */
+
+
+    //isValidEmail(emailInput.value);
+
+
+
+    //activities
+
+
+
+
+
+/*     if (creditcard.hidden = false) {   //if credit cards is selected, then do...
+    isValidCardNum(cardNumInput.value);
+    isValidZipcode(zipcodeInput.value);
+    isValidCvv(cvvInput.value);
+    } */
+
+
+    
    
     // if invalid call  e.preventDefault(); // stop default submittion
 
-
-    console.log(nameInput.value);
-    console.log('form has been submitted');
-    e.preventDefault();
+    //console.log('form has been submitted');
+    
 });
 
 
-
-function isValidName(name) { // checks the name
-
+/* function isValidName(name) { // checks the name
+        
     if (/^[^\s][a-z|\s]+$/i.test(name)) {
+        return true;
+        //return console.log(validName); 
+    } else {
+        return console.log(false);
+        //e.preventDefault();
+    }
+   //return validName;
+} */
+
+
+function isValidEmail(email) { // checks the email
+
+    if (/^[^@\s]+@[^@\s]+\.(com)$/i.test(email)) {
         return console.log(true); 
     } else {
         return console.log(false);
+        //e.preventDefault();
+    }
+}
+
+//const activityCheckbox = activities.children[1];
+
+//function isValidActivities(activities) { // checks the actitivy is selected
+    let checkedItems = 0; // *** move to global scope
+    activities.addEventListener('change', e => {
+        const checkbox = e.target.checked;
+        if (checkbox === true) {
+            // add attribute??
+            checkedItems = checkedItems + 1;
+            console.log(checkedItems);
+            //return console.log(false); // 
+        } else if (checkbox === false) {
+            checkedItems -= 1;
+            console.log(checkedItems);
+        }
+
+        if (checkedItems > 0) { // logs t/f for checked Items
+            console.log(true);
+        } else {
+            console.log(false);
+            e.preventDefault();
+        }
+    })
+    //return checkedItems;
+//}
+
+
+    // if checked item <1 then return true, if checkedItems = 0 then return false
+
+//}
+
+
+
+/* function isValidActivities(activitesCheckbox) { // checks the cvv
+
+    // LOOP THROUGH THE ACTIVITES HTML COLLECTION
+    for (let i = 0; i < activitesCheckbox.length; i++) {
+        if (activitesCheckbox[i].checked === false) {
+            return console.log(true); 
+        } else {
+            //return false
+            return console.log(false);
+            //e.preventDefault();
+        }
+
+    }
+
+} */
+
+function isValidCardNum(cardNum) { // checks the card number
+
+    if (/^\d{13,16}$/.test(cardNum)) {
+        return console.log(true); 
+    } else {
+        return console.log(false);
+        //e.preventDefault();
+    }
+}
+
+function isValidZipcode(zipcode) { // checks the zipcode
+
+    if (/^\d{5}$/.test(zipcode)) {
+        return console.log(true); 
+    } else {
+        return console.log(false);
+        //e.preventDefault();
+    }
+}
+
+function isValidCvv(cvv) { // checks the cvv
+
+    if (/^\d{3}$/.test(cvv)) {
+        return console.log(true); 
+    } else {
+        return console.log(false);
+        //e.preventDefault();
     }
 }
 
