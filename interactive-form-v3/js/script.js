@@ -390,4 +390,35 @@ form.addEventListener('submit', e =>  { //attaches event handler
 */
 
 const checkbox = document.querySelectorAll('input[type="checkbox"]');
-console.log(checkbox);
+
+
+for (let i = 0; i < checkbox.length; i++) {
+    console.log(checkbox[i]);    
+
+    checkbox[i].addEventListener('focus', e => {
+        const label = e.target.parentNode;
+        label.className = ''; // dont forget
+        if (checkbox[i].checked === false) {
+            label.classList.add('focus');
+            label.classList.remove('blur');
+
+        } 
+        
+    })
+
+     checkbox[i].addEventListener('blur', e => {
+        const label = e.target.parentNode;
+        label.className = '';
+        
+        if (checkbox[i].checked === true) {
+            label.classList.remove('focus');
+        } 
+    
+    })  
+
+}
+
+
+
+
+
