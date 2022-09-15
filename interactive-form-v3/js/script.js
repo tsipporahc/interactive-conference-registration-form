@@ -290,13 +290,13 @@ const cvvInput = document.getElementById('cvv');
 
 /**
 * 
-* ERROR Validation Functions
+* ERROR Indication Functions
 * the function enables user to see if their inputs are valid
 * 
 **/
 
     /*
-    1. Name Error Hint 
+    1. Name Error Indication 
     */
 
     const nameLabel = nameInput.parentElement;
@@ -316,7 +316,7 @@ const cvvInput = document.getElementById('cvv');
     }
 
     /*
-    2. Email Error Hint 
+    2. Email Error Indication 
     */
 
 
