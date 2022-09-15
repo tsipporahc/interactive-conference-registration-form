@@ -386,7 +386,8 @@ form.addEventListener('submit', e =>  { //attaches event handler
 *
 * "Accessibilty" section 
 *
-*
+* Focus and Blur effects
+* Users can use the tab and tab-shift to navigate the activites section
 */
 
 const checkbox = document.querySelectorAll('input[type="checkbox"]');
@@ -409,7 +410,6 @@ for (let i = 0; i < checkbox.length; i++) {
      checkbox[i].addEventListener('blur', e => {
         const label = e.target.parentNode;
         label.className = '';
-        
         if (checkbox[i].checked === true) {
             label.classList.remove('focus');
         } 
