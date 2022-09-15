@@ -1,33 +1,26 @@
 
 /* 
-*
-* "Name" Text feild 
+* "Name" Text field 
 *
 * when  page first loads, the first text field is focused by defaul
-*
 */
 
 document.getElementById('name').focus();
 
 /* 
-*
 * "Job Role" section 
-*
 * when user selects other,  then focus on 'other' text input
 * hide "other" text input field (default state)
-*
 */
 
 document.getElementById('other-job-role').style.display = "none";
 
 
 /* 
-*
 * EVENT LISTENER for "Job Role" Dropdown menu
 *
 * select element listens for changes to its state
 * job role - drop down selection menu 
-*
 */
 
 const jobRole = document.querySelector('select[id="title"]'); 
@@ -37,9 +30,7 @@ jobRole.addEventListener('change', e => {
         document.getElementById('other-job-role').style.display = 'block';
     } else {
         document.getElementById('other-job-role').style.display = "none";
-
     }
-
 });
 
 
@@ -186,7 +177,6 @@ payment.addEventListener('change', e =>{
 * "Form Validation"
 *
 * check for user requirements & valid inputs
-* 
 *
 */
 
@@ -305,6 +295,7 @@ const cvvInput = document.getElementById('cvv');
         nameLabel.classList.add('not-valid');
         nameLabel.classList.remove('valid');
         nameHint.style.display = 'block';
+        return;
     }
     
     
@@ -312,6 +303,7 @@ const cvvInput = document.getElementById('cvv');
         nameLabel.classList.add('valid');
         nameLabel.classList.remove('not-valid');
         nameHint.style.display = 'none';
+        return;
     }
 
     /*
@@ -325,6 +317,7 @@ const cvvInput = document.getElementById('cvv');
         emailLabel.classList.add('not-valid');
         emailLabel.classList.remove('valid');
         emailHint.style.display = 'block';
+        return;
     }
     
     
@@ -332,6 +325,7 @@ const cvvInput = document.getElementById('cvv');
         emailLabel.classList.add('valid');
         emailLabel.classList.remove('not-valid');
         emailHint.style.display = 'none';
+        return;
     }
 
 
@@ -347,6 +341,7 @@ const cvvInput = document.getElementById('cvv');
         activities.classList.add('not-valid');
         activities.classList.remove('valid');
         activitiesHint.style.display = 'block';
+        return;
     }
     
     
@@ -354,6 +349,7 @@ const cvvInput = document.getElementById('cvv');
         activities.classList.add('valid');
         activities.classList.remove('not-valid');
         activitiesHint.style.display = 'none';
+        return;
     }
 
 
@@ -371,6 +367,7 @@ const cvvInput = document.getElementById('cvv');
         cardNumLabel.classList.add('not-valid');
         cardNumLabel.classList.remove('valid');
         cardNumHint.style.display = 'block';
+        return;
     }
     
     
@@ -378,6 +375,7 @@ const cvvInput = document.getElementById('cvv');
         cardNumLabel.classList.add('valid');
         cardNumLabel.classList.remove('not-valid');
         cardNumHint.style.display = 'none';
+        return;
     }
     
 
@@ -395,6 +393,7 @@ const cvvInput = document.getElementById('cvv');
         zipcodeLabel.classList.add('not-valid');
         zipcodeLabel.classList.remove('valid');
         zipcodeHint.style.display = 'block';
+        return;
     }
     
     
@@ -402,6 +401,7 @@ const cvvInput = document.getElementById('cvv');
         zipcodeLabel.classList.add('valid');
         zipcodeLabel.classList.remove('not-valid');
         zipcodeHint.style.display = 'none';
+        return;
     }
 
 
@@ -416,6 +416,7 @@ const cvvInput = document.getElementById('cvv');
         cvvLabel.classList.add('not-valid');
         cvvLabel.classList.remove('valid');
         cvvHint.style.display = 'block';
+        return;
     }
     
     
@@ -423,6 +424,7 @@ const cvvInput = document.getElementById('cvv');
         cvvLabel.classList.add('valid');
         cvvLabel.classList.remove('not-valid');
         cvvHint.style.display = 'none';
+        return;
     }
 
 
@@ -435,13 +437,7 @@ const cvvInput = document.getElementById('cvv');
 * 
 **/
 
-form.addEventListener('submit', e =>  { //attaches event handler
-    
-    /****
-    0000. Prevent default submittion delete when finished with project
-    *****/
-    e.preventDefault();
-    
+form.addEventListener('submit', e =>  {   
 
 
     /*
@@ -554,6 +550,11 @@ for (let i = 0; i < checkbox.length; i++) {
 }
 
 
+/*
+Treehouse Techdegree:
+FSJS Project 3 - Interactive Form
 
+Check out the "Project Resources" section of the Instructions tab: https://teamtreehouse.com/projects/interactive-form#instructions
+*/
 
 
