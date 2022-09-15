@@ -220,7 +220,7 @@ const cvvInput = document.getElementById('cvv');
 
     let emailResult = '';
 
-    function isValidEmail(email) {
+    function emailValidation(email) {
         const emailInputValue = email.value;
         const emailREGEX = /^[^@\s]+@[^@\s]+\.(com)$/i; 
         emailResult = emailREGEX.test(emailInputValue);
@@ -234,7 +234,7 @@ const cvvInput = document.getElementById('cvv');
 
     let checkedItems = 0; // *** move to global scope
 
-    function isValidActivities() { // *** i can call an anony function
+    function activitiesValidation() { // *** i can call an anony function
         activities.addEventListener('change', e => {
             let checkbox = e.target.checked;
             if (checkbox === true) {
@@ -251,7 +251,7 @@ const cvvInput = document.getElementById('cvv');
     
     let cardNumResult = '';
 
-    function isValidCardNum(creditcard) {
+    function cardNumValidation(creditcard) {
         const cardNumInputValue = creditcard.value;
         const cardNumREGEX = /^\d{13,16}$/;
         cardNumResult = cardNumREGEX.test(cardNumInputValue);
@@ -264,7 +264,7 @@ const cvvInput = document.getElementById('cvv');
 
     let zipcodeResult = '';
 
-    function isValidZipcode(zip) {
+    function zipcodeValidation(zip) {
         const zipcodeInputValue = zip.value;
         const zipcodeREGEX = /^\d{5}$/;
         zipcodeResult = zipcodeREGEX.test(zipcodeInputValue);
@@ -278,7 +278,7 @@ const cvvInput = document.getElementById('cvv');
 
     let cvvResult = '';
 
-    function isValidCvv(cvv) {
+    function cvvValidation(cvv) {
         const cvvInputValue = cvv.value;
         const cvvREGEX = /^\d{3}$/;
         cvvResult = cvvREGEX.test(cvvInputValue);
@@ -312,12 +312,112 @@ const cvvInput = document.getElementById('cvv');
     function isValidName() {
         nameLabel.classList.add('valid');
         nameLabel.classList.remove('not-valid');
-        nameHint.style.display = 'none';
     }
 
     /*
     2. Email Error Indication 
     */
+
+    const emailLabel = emailInput.parentElement;
+    const emailHint = emailLabel.lastElementChild;
+    
+    function notValidEmail() {
+        emailLabel.classList.add('not-valid');
+        emailLabel.classList.remove('valid');
+        emailHint.style.display = 'block';
+    }
+    
+    
+    function isValidEmail() {
+        emailLabel.classList.add('valid');
+        emailLabel.classList.remove('not-valid');
+    }
+
+
+    /*
+    3. Activities Error Indication 
+    */
+
+/*     const activitiesLabel = emailInput.parentElement;
+    const activitiesHint = emailLabel.lastElementChild;
+    
+    function notValidActivities() {
+        activitiesLabel.classList.add('not-valid');
+        activitiesLabel.classList.remove('valid');
+        activitiesHint.style.display = 'block';
+    }
+    
+    
+    function isValidActivties() {
+        activitiesLabel.classList.add('valid');
+        activitiesLabel.classList.remove('not-valid');
+        activitiesHint.style.display = 'none';
+    } */
+
+
+
+
+    /*
+    4. Card Number Error Indication 
+    */
+
+    const cardNumLabel = cardNumInput.parentElement;
+    const cardNumHint = cardNumLabel.lastElementChild;
+    
+    function notValidCardNum() {
+        cardNumLabel.classList.add('not-valid');
+        cardNumLabel.classList.remove('valid');
+        cardNumHint.style.display = 'block';
+    }
+    
+    
+    function isValidCardNum() {
+        cardNumLabel.classList.add('valid');
+        cardNumLabel.classList.remove('not-valid');
+    }
+    
+
+
+
+
+    /*
+    5. Zipcode Error Indication 
+    */
+
+    const zipcodeLabel = zipcodeInput.parentElement;
+    const zipcodeHint = zipcodeLabel.lastElementChild;
+    
+    function notValidZipcode() {
+        zipcodeLabel.classList.add('not-valid');
+        zipcodeLabel.classList.remove('valid');
+        zipcodeHint.style.display = 'block';
+    }
+    
+    
+    function isValidZipcode() {
+        zipcodeLabel.classList.add('valid');
+        zipcodeLabel.classList.remove('not-valid');
+    }
+
+
+    /*
+    6. CVV Error Indication 
+    */
+
+    const cvvLabel = cvvInput.parentElement;
+    const cvvHint = cvvLabel.lastElementChild;
+    
+    function notValidCvv() {
+        cvvLabel.classList.add('not-valid');
+        cvvLabel.classList.remove('valid');
+        cvvHint.style.display = 'block';
+    }
+    
+    
+    function isValidCvv() {
+        cvvLabel.classList.add('valid');
+        cvvLabel.classList.remove('not-valid');
+    }
 
 
 
@@ -328,8 +428,6 @@ const cvvInput = document.getElementById('cvv');
 * SUBMIT EVENT LISTENER for the form
 * 
 **/
-
-
 
 form.addEventListener('submit', e =>  { //attaches event handler
     
@@ -358,11 +456,12 @@ form.addEventListener('submit', e =>  { //attaches event handler
     2. Calling Email Validation Function & Conditional
     */
 
-    isValidEmail(emailInput);
-    console.log(emailResult);
+    emailValidation(emailInput);
     if (emailResult === false) {
         e.preventDefault();
-        alert('email is not valid. but your code is working.');
+        notValidEmail();
+    } else {
+        isValidEmail();
     }
 
 
@@ -370,8 +469,7 @@ form.addEventListener('submit', e =>  { //attaches event handler
     3. Activties Section Checking Items with Conditional
     */
 
-    isValidActivities();
-    console.log(checkedItems);
+    activitiesValidation();
     if (checkedItems == false) {
         e.preventDefault();
         alert('check more activites, but your code is working.');
@@ -379,41 +477,44 @@ form.addEventListener('submit', e =>  { //attaches event handler
 
 
 
-    /* 4. Calling Card Number Validation Function & Conditional */
 
-    /*
-    if credit card section is visible
-    */
+
+    
+    // if credit card section is visible run the following: //
 
     const creditcardVisible = creditcard.hidden;
-    if (creditcardVisible === false) {
+    if (creditcardVisible === false) { 
 
+    /* 4. Calling Card Number Validation Function & Conditional */
 
-        isValidCardNum(cardNumInput);
-        console.log(cardNumResult);
+        cardNumValidation(cardNumInput);
         if (cardNumResult === false) {
             e.preventDefault();
-            alert('card invalid, but your code is working. keep going.');
+            notValidCardNum();
+        } else {
+            isValidCardNum();
         }
 
 
     /* 5. Calling ZipCode Validation Function & Conditional */
 
-    
-        isValidZipcode(zipcodeInput);
-        console.log(zipcodeResult);
+        zipcodeValidation(zipcodeInput);
         if (zipcodeResult == false) {
             e.preventDefault();
-            alert('zipcode invalid, but your code is working.');
+            notValidZipcode();
+            
+        } else {
+            isValidZipcode();
         }
     
     /* 6. Calling CVV Validation Function & Conditional */
 
-        isValidCvv(cvvInput);
-        console.log(cvvResult);
+        cvvValidation(cvvInput);
         if (cvvResult == false) {
             e.preventDefault();
-            alert('cvv invalid, but your code is working beautifully.');
+            notValidCvv();
+        } else {
+            isValidCvv();
         }
     }    
 });
