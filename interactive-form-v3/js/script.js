@@ -232,15 +232,16 @@ const cvvInput = document.getElementById('cvv');
 
     let checkedItems = 0; // *** move to global scope
 
-    activities.addEventListener('change', e => { // checks the actitivy is selected
-        let checkbox = e.target.checked;
-        if (checkbox === true) {
-        checkedItems = checkedItems + 1;
-        } else if (checkbox === false) {
-        checkedItems -= 1;
-        }
+    function isValidActivities() { // *** i can call an anony function
+        activities.addEventListener('change', e => {
+            let checkbox = e.target.checked;
+            if (checkbox === true) {
+            checkedItems += 1;
+            } else if (checkbox === false) {
+            checkedItems -= 1;
+            }
     })
-
+    }
     /*
     4. Credit Card Number Validation
     */
@@ -332,6 +333,7 @@ form.addEventListener('submit', e =>  { //attaches event handler
     3. Activties Section Checking Items with Conditional
     */
 
+    isValidActivities();
     console.log(checkedItems);
     if (checkedItems == false) {
         e.preventDefault();
@@ -380,3 +382,12 @@ form.addEventListener('submit', e =>  { //attaches event handler
 });
 
 
+/* 
+*
+* "Accessibilty" section 
+*
+*
+*/
+
+const checkbox = document.querySelectorAll('input[type="checkbox"]');
+console.log(checkbox);
