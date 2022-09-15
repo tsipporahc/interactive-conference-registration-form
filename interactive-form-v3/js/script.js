@@ -398,7 +398,6 @@ for (let i = 0; i < checkbox.length; i++) {
 
     checkbox[i].addEventListener('focus', e => {
         const label = e.target.parentNode;
-        label.className = '';
         label.classList.add('focus'); 
     })
 
