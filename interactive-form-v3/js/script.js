@@ -209,7 +209,6 @@ const cvvInput = document.getElementById('cvv');
         const nameInputValue = name.value;
         const nameREGEX = /[^\s][a-z|\s]*$/i;
         nameResult = nameREGEX.test(nameInputValue);
-        console.log(nameResult);
     }
 
 
@@ -312,6 +311,7 @@ const cvvInput = document.getElementById('cvv');
     function isValidName() {
         nameLabel.classList.add('valid');
         nameLabel.classList.remove('not-valid');
+        nameHint.style.display = 'none';
     }
 
     /*
@@ -331,6 +331,7 @@ const cvvInput = document.getElementById('cvv');
     function isValidEmail() {
         emailLabel.classList.add('valid');
         emailLabel.classList.remove('not-valid');
+        emailHint.style.display = 'none';
     }
 
 
@@ -338,21 +339,23 @@ const cvvInput = document.getElementById('cvv');
     3. Activities Error Indication 
     */
 
-/*     const activitiesLabel = emailInput.parentElement;
-    const activitiesHint = emailLabel.lastElementChild;
+    //const activitiesLabel = emailInput.parentElement;
+    const activitiesHint = activities.lastElementChild;
+
     
     function notValidActivities() {
-        activitiesLabel.classList.add('not-valid');
-        activitiesLabel.classList.remove('valid');
+        activities.classList.add('not-valid');
+        activities.classList.remove('valid');
         activitiesHint.style.display = 'block';
     }
     
     
     function isValidActivties() {
-        activitiesLabel.classList.add('valid');
-        activitiesLabel.classList.remove('not-valid');
+        activities.classList.add('valid');
+        activities.classList.remove('not-valid');
         activitiesHint.style.display = 'none';
-    } */
+    }
+
 
 
 
@@ -374,6 +377,7 @@ const cvvInput = document.getElementById('cvv');
     function isValidCardNum() {
         cardNumLabel.classList.add('valid');
         cardNumLabel.classList.remove('not-valid');
+        cardNumHint.style.display = 'none';
     }
     
 
@@ -397,6 +401,7 @@ const cvvInput = document.getElementById('cvv');
     function isValidZipcode() {
         zipcodeLabel.classList.add('valid');
         zipcodeLabel.classList.remove('not-valid');
+        zipcodeHint.style.display = 'none';
     }
 
 
@@ -417,6 +422,7 @@ const cvvInput = document.getElementById('cvv');
     function isValidCvv() {
         cvvLabel.classList.add('valid');
         cvvLabel.classList.remove('not-valid');
+        cvvHint.style.display = 'none';
     }
 
 
@@ -472,7 +478,9 @@ form.addEventListener('submit', e =>  { //attaches event handler
     activitiesValidation();
     if (checkedItems == false) {
         e.preventDefault();
-        alert('check more activites, but your code is working.');
+        notValidActivities();
+    } else {
+        isValidActivties();
     }
 
 
