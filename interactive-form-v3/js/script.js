@@ -198,7 +198,36 @@ const cvvInput = document.getElementById('cvv');
 //const activityBox = activities.children[1];
 
 
+    /* 
+    1. Name Validation Test
+    */
 
+    let nameResult = '';
+
+    function isValidName(name) {
+        const nameInputValue = name.value;
+        //console.log(nameInputValue);
+        const nameREGEX = /[^\s][a-z|\s]*$/i;
+        //console.log(nameREGEX);
+        nameResult = nameREGEX.test(nameInputValue);
+        console.log(nameResult);
+    }
+
+
+
+    /* 
+    2. Email Validation Test
+    */
+
+    let emailResult = '';
+
+    function isValidEmail(email) {
+        const emailInputValue = email.value;
+        //console.log(emailInputValue);
+        const emailREGEX = /^[^@\s]+@[^@\s]+\.(com)$/i; 
+        //console.log(emailREGEX);
+        emailResult = emailREGEX.test(emailInputValue);
+    }
 
 
     /*
@@ -250,13 +279,13 @@ const cvvInput = document.getElementById('cvv');
     console.log(cardNumREGEX);
     cardNumResult = cardNumREGEX.test(cardNumInputValue);
     console.log(cardNumResult);
-    if (cardNumResult) {
+/*     if (cardNumResult) {
         //console.log(true);
         alert('card is valid. good work :)');
     } else {
         //console.log(false);
         alert('card invalid. try again :(');
-    }
+    } */
 
     return cardNumResult;
     }
@@ -274,19 +303,19 @@ const cvvInput = document.getElementById('cvv');
     //console.log(zipcodeREGEX);
     zipcodeResult = zipcodeREGEX.test(zipcodeInputValue);
     //console.log(zipcodeResult);
-    if (zipcodeResult === true) {
+/*     if (zipcodeResult === true) {
     //console.log(true);
     alert('zipcode is valid. good work :)');
     } else {
     //console.log(false);
     alert('zipcode invalid. try again :(');
-    }
+    } */
     return zipcodeResult;
     }
 
     
     /*
-    5. CVV Validation
+    5. CVV Validation Test
     */
 
     let cvvResult = '';
@@ -298,13 +327,13 @@ const cvvInput = document.getElementById('cvv');
         //console.log(cvvREGEX);
         cvvResult = cvvREGEX.test(cvvInputValue);
         //console.log(cvvResult);
-        if (cvvResult === true) {
+/*         if (cvvResult === true) {
         //console.log(true);
         alert('cvv is valid. and you are beautiful. good work :)');
         } else {
         //console.log(false);
         alert('cvv invalid. but your code is working. try again :(');
-        }
+        } */
     return cvvResult;
     }
 
@@ -318,24 +347,24 @@ const cvvInput = document.getElementById('cvv');
 form.addEventListener('submit', e =>  { //attaches event handler
     e.preventDefault(); // *** WHEN FINISHED DELETE THIS *** //
     
-    
-    
-    
-
-    
 
 
     /*
-    1. Name Validation Function WORKS!
+    1. Calling Name Validation Function & Conditional
     */
 
+    isValidName(nameInput);
+    if (nameResult === false) {
+    e.preventDefault();
+    alert('name is not valid. but your code is working.');
+    }
 
     
-        const nameInputValue = nameInput.value;
+/*         const nameInputValue = nameInput.value;
         //console.log(nameInputValue);
         const nameREGEX = /[^\s][a-z|\s]*$/i;
         //console.log(nameREGEX);
-        let nameResult = nameREGEX.test(nameInputValue);
+        let nameResult = nameREGEX.test(nameInputValue); */
         //console.log(nameResult);
        /*  if (nameResult === true) {
             //console.log(true);
@@ -349,20 +378,22 @@ form.addEventListener('submit', e =>  { //attaches event handler
         } */
     
 
-    
-        if (nameResult === false) {
-        e.preventDefault();
-        alert('name is not valid. but your code is working.');
-        }
+
 
 
 
     /*
-    2. Email Validation Function WORKS!
+    2. Calling Email Validation Function & Conditional
     */
 
+    isValidEmail(emailInput);
+    if (emailResult === false) {
+        e.preventDefault();
+        alert('email is not valid. but your code is working.');
+    }
 
-    //function isValidEmail(email) { // checks the name
+
+/*     //function isValidEmail(email) { // checks the name
         const emailInputValue = email.value;
         //console.log(emailInputValue);
         const emailREGEX = /^[^@\s]+@[^@\s]+\.(com)$/i; 
@@ -379,17 +410,13 @@ form.addEventListener('submit', e =>  { //attaches event handler
             //e.preventDefault();
             return false;
         } */
-    //}
+    //} */
 
-    //isValidEmail(emailInput);
-    if (emailResult === false) {
-        e.preventDefault();
-        alert('email is not valid. but your code is working.');
-    }
+
 
 
     /*
-    3. Activities Validation
+    3. Activties Section Checking Items with Conditional
     */
 
 
@@ -400,7 +427,7 @@ form.addEventListener('submit', e =>  { //attaches event handler
 
 
 
-    /* 4. Card Number Validation */
+    /* 4. Calling Card Number Validation Function & Conditional */
 
     isValidCardNum(cardNumInput);
     if (cardNumResult === false) {
@@ -409,7 +436,7 @@ form.addEventListener('submit', e =>  { //attaches event handler
     }
 
 
-    /* 5. Zipcode Validation */
+    /* 5. Calling ZipCode Validation Function & Conditional */
 
     
     isValidZipcode(zipcodeInput);
@@ -419,7 +446,7 @@ form.addEventListener('submit', e =>  { //attaches event handler
         alert('zipcode invalid, but your code is working.');
     }
     
-    /* 6. CVV Validation */
+    /* 6. Calling CVV Validation Function & Conditional */
 
     isValidCvv(cvvInput);
     console.log(cvvResult);
