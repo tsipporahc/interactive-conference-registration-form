@@ -191,71 +191,302 @@ payment.addEventListener('change', e =>{
 
 const form = document.querySelector('form');
 const nameInput = document.getElementById('name');
-//const nameInputValue = nameInput.value;
 const emailInput = document.getElementById('email');
 const cardNumInput = document.getElementById('cc-num');
 const zipcodeInput = document.getElementById('zip');
 const cvvInput = document.getElementById('cvv');
+//const activityBox = activities.children[1];
+
+
+
+
+
+    /*
+    3. Activities Validation WORKS!
+    */
+
+
+    let checkedItems = 0; // *** move to global scope
+    console.log(checkedItems);
+
+    activities.addEventListener('change', e => { // checks the actitivy is selected
+    let checkbox = e.target.checked;
+    console.log(checkbox);
+    if (checkbox === true) {
+        // add attribute??
+        checkedItems = checkedItems + 1;
+        //console.log(checkedItems);
+        //return console.log(false);
+    } else if (checkbox === false) {
+        checkedItems -= 1;
+        //console.log(checkedItems);
+    }
+
+    /* if (checkedItems > 0) { // logs t/f boolean for checked Items
+        checkedItems = true;
+        alert('You checked enough activities.');
+        //return true;
+    } else {
+        checkedItems = false;
+        alert('You didnt checked enough activities. try again');
+        //return false;
+    } */
+    })
+
+    /*
+    4. Credit Card Number Validation
+    */
+
+    const creditcardVisible = creditcard.hidden;
+    let cardNumResult = '';
+
+    function isValidCardNum(creditcard) {
+
+     //if (creditcardVisible == false) {
+
+    const cardNumInputValue = creditcard.value;
+    console.log(cardNumInputValue);
+    const cardNumREGEX = /^\d{13,16}$/;
+    console.log(cardNumREGEX);
+    cardNumResult = cardNumREGEX.test(cardNumInputValue);
+    console.log(cardNumResult);
+    if (cardNumResult) {
+        //console.log(true);
+        alert('card is valid. good work :)');
+    } else {
+        //console.log(false);
+        alert('card invalid. try again :(');
+    }
+
+    return cardNumResult;
+    }
+
+/*
+    5. Zip Code Validation
+    */
+
+    let zipcodeResult = '';
+
+    function isValidZipcode(zip) {
+    const zipcodeInputValue = zip.value;
+    //console.log(zipcodeInputValue);
+    const zipcodeREGEX = /^\d{5}$/;
+    //console.log(zipcodeREGEX);
+    zipcodeResult = zipcodeREGEX.test(zipcodeInputValue);
+    //console.log(zipcodeResult);
+    if (zipcodeResult === true) {
+    //console.log(true);
+    alert('zipcode is valid. good work :)');
+    } else {
+    //console.log(false);
+    alert('zipcode invalid. try again :(');
+    }
+    return zipcodeResult;
+    }
+
+    
+    /*
+    5. CVV Validation
+    */
+
+    let cvvResult = '';
+
+    function isValidCvv(cvv) {
+        const cvvInputValue = cvv.value;
+        //console.log(cvvInputValue);
+        const cvvREGEX = /^\d{3}$/;
+        //console.log(cvvREGEX);
+        cvvResult = cvvREGEX.test(cvvInputValue);
+        //console.log(cvvResult);
+        if (cvvResult === true) {
+        //console.log(true);
+        alert('cvv is valid. and you are beautiful. good work :)');
+        } else {
+        //console.log(false);
+        alert('cvv invalid. but your code is working. try again :(');
+        }
+    return cvvResult;
+    }
+
+
+ 
+    //   }
 
 
 
 
 form.addEventListener('submit', e =>  { //attaches event handler
-    //e.preventDefault();
+    e.preventDefault(); // *** WHEN FINISHED DELETE THIS *** //
+    
+    
+    
+    
 
-    isValidName(nameInput);
+    
 
-    function isValidName(name) { // checks the name
-        const nameInputValue = name.value;
-        console.log(nameInputValue);
+
+    /*
+    1. Name Validation Function WORKS!
+    */
+
+
+    
+        const nameInputValue = nameInput.value;
+        //console.log(nameInputValue);
         const nameREGEX = /[^\s][a-z|\s]*$/i;
-        console.log(nameREGEX);
+        //console.log(nameREGEX);
         let nameResult = nameREGEX.test(nameInputValue);
-        console.log(nameResult);
-        if (nameResult === true) {
-            console.log(true);
-            console.log('form has been submitted');
+        //console.log(nameResult);
+       /*  if (nameResult === true) {
+            //console.log(true);
+            //alert('name is valid. good work :)');
             return true;
-            //return console.log(validName); 
+        } else {
+            //console.log(false);
+            //alert('name invalid. try again :(');
+            //e.preventDefault();
+            return false;
+        } */
+    
+
+    
+        if (nameResult === false) {
+        e.preventDefault();
+        alert('name is not valid. but your code is working.');
+        }
+
+
+
+    /*
+    2. Email Validation Function WORKS!
+    */
+
+
+    //function isValidEmail(email) { // checks the name
+        const emailInputValue = email.value;
+        //console.log(emailInputValue);
+        const emailREGEX = /^[^@\s]+@[^@\s]+\.(com)$/i; 
+        //console.log(emailREGEX);
+        let emailResult = emailREGEX.test(emailInputValue);
+        //console.log(emailResult);
+       /*  if (emailResult === true) {
+            //console.log(true);
+            //alert('email is valid. good job. keep going! :)');
+            return true;
         } else {
             console.log(false);
-            console.log('name invalid. try again');
-            e.preventDefault();
-            //validName === false;
-            //console.log(validName);
+            //alert('email invalid. try again :(');
+            //e.preventDefault();
             return false;
-        }
+        } */
+    //}
+
+    //isValidEmail(emailInput);
+    if (emailResult === false) {
+        e.preventDefault();
+        alert('email is not valid. but your code is working.');
+    }
+
+
+    /*
+    3. Activities Validation
+    */
+
+
+    if (checkedItems == false) {
+        e.preventDefault();
+        alert('check more activites, but your code is working.');
     }
 
 
 
-/*     if (validName === false) {
-        e.preventDefault(); 
-    } */
+    /* 4. Card Number Validation */
+
+    isValidCardNum(cardNumInput);
+    if (cardNumResult === false) {
+        e.preventDefault();
+        alert('card invalid, but your code is working. keep going.');
+    }
 
 
-    //isValidEmail(emailInput.value);
+    /* 5. Zipcode Validation */
+
+    
+    isValidZipcode(zipcodeInput);
+    console.log(zipcodeResult);
+    if (zipcodeResult == false) {
+        e.preventDefault();
+        alert('zipcode invalid, but your code is working.');
+    }
+    
+    /* 6. CVV Validation */
+
+    isValidCvv(cvvInput);
+    console.log(cvvResult);
+    if (cvvResult == false) {
+        e.preventDefault();
+        alert('cvv invalid, but your code is working beautifully.');
+    }
 
 
 
-    //activities
 
 
 
 
 
-/*     if (creditcard.hidden = false) {   //if credit cards is selected, then do...
-    isValidCardNum(cardNumInput.value);
-    isValidZipcode(zipcodeInput.value);
-    isValidCvv(cvvInput.value);
-    } */
+
+
+
+
+
+
+    /*    if (creditcard.hidden = false) {   //if credit cards is selected, then do...
+    isValidCardNum(cardNumInput);
+    isValidZipcode(zipcodeInput);
+    isValidCvv(cvvInput);
+   } */
+   // isValidCardNum(cardNumInput);
+    //isValidZipcode(zipcodeInput);
+    //isValidCvv(cvvInput);
+    //console.log(checkedItems);
+
+
+
+
+
+
+
+
+
+
 
 
     
-   
-    // if invalid call  e.preventDefault(); // stop default submittion
+        /*     if (checkedItems > 0) { // logs boolean for checked Items
+                console.log(true);
+                alert(`you selected ${checkedItems}! nice! form can be submitted`);
+            } else {
+                console.log(false);
+                alert('activities invalid. lets enjoy! Select one then try again :(');
+                e.preventDefault();
+            } */
+        
 
-    //console.log('form has been submitted');
+
+
+
+    /* 4. if credit card */
+
+
+
+
+
+    
+    // if ALL functions or variables are true then SUBMIT
+            //alert('form has been submitted');
+    // else invalid/ false  return call  e.preventDefault(); // stop default form submittion
+        //alert('form cannot be submitted. try again');
     
 });
 
@@ -273,7 +504,7 @@ form.addEventListener('submit', e =>  { //attaches event handler
 } */
 
 
-function isValidEmail(email) { // checks the email
+/* function isValidEmail(email) { // checks the email
 
     if (/^[^@\s]+@[^@\s]+\.(com)$/i.test(email)) {
         return console.log(true); 
@@ -281,14 +512,16 @@ function isValidEmail(email) { // checks the email
         return console.log(false);
         //e.preventDefault();
     }
-}
+} */
 
 //const activityCheckbox = activities.children[1];
 
-//function isValidActivities(activities) { // checks the actitivy is selected
-    let checkedItems = 0; // *** move to global scope
-    activities.addEventListener('change', e => {
+
+ //function isValidActivities(activities) { // checks the actitivy is selected
+    
+/*     activities.addEventListener('change', e => { // checks the actitivy is selected
         const checkbox = e.target.checked;
+        console.log(checkbox);
         if (checkbox === true) {
             // add attribute??
             checkedItems = checkedItems + 1;
@@ -298,16 +531,17 @@ function isValidEmail(email) { // checks the email
             checkedItems -= 1;
             console.log(checkedItems);
         }
-
+    })
         if (checkedItems > 0) { // logs t/f for checked Items
             console.log(true);
+            return true;
         } else {
             console.log(false);
-            e.preventDefault();
-        }
-    })
-    //return checkedItems;
-//}
+            return false;
+        } */
+    
+  //  return checkedItems;
+//} 
 
 
     // if checked item <1 then return true, if checkedItems = 0 then return false
@@ -332,7 +566,7 @@ function isValidEmail(email) { // checks the email
 
 } */
 
-function isValidCardNum(cardNum) { // checks the card number
+/* function isValidCardNum(cardNum) { // checks the card number
 
     if (/^\d{13,16}$/.test(cardNum)) {
         return console.log(true); 
@@ -340,9 +574,9 @@ function isValidCardNum(cardNum) { // checks the card number
         return console.log(false);
         //e.preventDefault();
     }
-}
+} */
 
-function isValidZipcode(zipcode) { // checks the zipcode
+/* function isValidZipcode(zipcode) { // checks the zipcode
 
     if (/^\d{5}$/.test(zipcode)) {
         return console.log(true); 
@@ -350,9 +584,9 @@ function isValidZipcode(zipcode) { // checks the zipcode
         return console.log(false);
         //e.preventDefault();
     }
-}
+} */
 
-function isValidCvv(cvv) { // checks the cvv
+/* function isValidCvv(cvv) { // checks the cvv
 
     if (/^\d{3}$/.test(cvv)) {
         return console.log(true); 
@@ -360,7 +594,7 @@ function isValidCvv(cvv) { // checks the cvv
         return console.log(false);
         //e.preventDefault();
     }
-}
+} */
 
 
 /* 
