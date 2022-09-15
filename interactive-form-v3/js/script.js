@@ -179,6 +179,8 @@ payment.addEventListener('change', e =>{
 
 
 
+
+
 /* 
 *
 * "Form Validation"
@@ -203,7 +205,7 @@ const cvvInput = document.getElementById('cvv');
 
     let nameResult = '';
 
-    function isValidName(name) {
+    function nameValidation(name) {
         const nameInputValue = name.value;
         const nameREGEX = /[^\s][a-z|\s]*$/i;
         nameResult = nameREGEX.test(nameInputValue);
@@ -286,6 +288,40 @@ const cvvInput = document.getElementById('cvv');
 
 
 
+/**
+* 
+* ERROR Validation Functions
+* the function enables user to see if their inputs are valid
+* 
+**/
+
+    /*
+    1. Name Error Hint 
+    */
+
+    const nameLabel = nameInput.parentElement;
+    const nameHint = nameLabel.lastElementChild;
+    
+    function notValidName() {
+        nameLabel.classList.add('not-valid');
+        nameLabel.classList.remove('valid');
+        nameHint.style.display = 'block';
+    }
+    
+    
+    function isValidName() {
+        nameLabel.classList.add('valid');
+        nameLabel.classList.remove('not-valid');
+        nameHint.style.display = 'none';
+    }
+
+    /*
+    2. Email Error Hint 
+    */
+
+
+
+
 
 /**
 * 
@@ -308,11 +344,12 @@ form.addEventListener('submit', e =>  { //attaches event handler
     1. Calling Name Validation Function & Conditional
     */
 
-    isValidName(nameInput);
-    console.log(nameResult);
+    nameValidation(nameInput);
     if (nameResult === false) {
-    e.preventDefault();
-    alert('name is not valid. but your code is working.');
+        e.preventDefault();
+        notValidName();
+    } else {
+        isValidName();    
     }
 
 
@@ -393,8 +430,7 @@ form.addEventListener('submit', e =>  { //attaches event handler
 const checkbox = document.querySelectorAll('input[type="checkbox"]');
 
 
-for (let i = 0; i < checkbox.length; i++) {
-    console.log(checkbox[i]);    
+for (let i = 0; i < checkbox.length; i++) {   
 
     checkbox[i].addEventListener('focus', e => {
         const label = e.target.parentNode;
