@@ -398,22 +398,13 @@ for (let i = 0; i < checkbox.length; i++) {
 
     checkbox[i].addEventListener('focus', e => {
         const label = e.target.parentNode;
-        label.className = ''; // dont forget
-        if (checkbox[i].checked === false) {
-            label.classList.add('focus');
-            label.classList.remove('blur');
-
-        } 
-        
+        label.className = '';
+        label.classList.add('focus'); 
     })
 
      checkbox[i].addEventListener('blur', e => {
         const label = e.target.parentNode;
-        label.className = '';
-        if (checkbox[i].checked === true) {
-            label.classList.remove('focus');
-        } 
-    
+        label.classList.remove('focus');    
     })  
 
 }
