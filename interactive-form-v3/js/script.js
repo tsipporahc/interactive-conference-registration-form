@@ -460,11 +460,11 @@ form.addEventListener('submit', e =>  {
     3. Activities Section - Checking validity of the number of items checked
     */
 
-    if (checkedItems > 0) {
+    if (checkedItems == 0) {
         e.preventDefault();
-        isValidActivties();
-    } else {
         notValidActivities();
+    } else {
+        isValidActivties();
     }
 
 
