@@ -223,7 +223,6 @@ const cvvInput = document.getElementById('cvv');
 
     let checkedItems = 0; // *** move to global scope
 
-    //function activitiesValidationTest(activitybox) { // *** i can call an anony function
         activities.addEventListener('change', e => {
             let checkbox = e.target.checked;
             if (checkbox === true) {
@@ -232,8 +231,7 @@ const cvvInput = document.getElementById('cvv');
             checkedItems -= 1;
             }
     })
-    //return checkedItems;
-   // }
+ 
 
     /*
     4. Credit Card Number Validation
