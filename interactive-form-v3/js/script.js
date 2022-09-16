@@ -223,7 +223,7 @@ const cvvInput = document.getElementById('cvv');
 
     let checkedItems = 0; // *** move to global scope
 
-    function activitiesValidationTest() { // *** i can call an anony function
+    //function activitiesValidationTest(activitybox) { // *** i can call an anony function
         activities.addEventListener('change', e => {
             let checkbox = e.target.checked;
             if (checkbox === true) {
@@ -232,7 +232,9 @@ const cvvInput = document.getElementById('cvv');
             checkedItems -= 1;
             }
     })
-    }
+    //return checkedItems;
+   // }
+
     /*
     4. Credit Card Number Validation
     */
@@ -341,11 +343,12 @@ const cvvInput = document.getElementById('cvv');
     
     
     function isValidActivties() {
+    //if (checkedItems > 0) {
         activities.classList.add('valid');
         activities.classList.remove('not-valid');
         activitiesHint.style.display = 'none';
-    }
-
+    //}
+  }
 
 
 
@@ -456,15 +459,14 @@ form.addEventListener('submit', e =>  {
 
 
     /*
-    3. Activties Section Checking Items with Conditional
+    3. Activities Section - Checking validity of the number of items checked
     */
 
-    activitiesValidationTest();
-    if (checkedItems == false) {
+    if (checkedItems > 0) {
         e.preventDefault();
-        notValidActivities();
-    } else {
         isValidActivties();
+    } else {
+        notValidActivities();
     }
 
 
