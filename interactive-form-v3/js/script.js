@@ -197,8 +197,9 @@ const cvvInput = document.getElementById('cvv');
 
     function nameValidationTest(name) {
         const nameInputValue = name.value;
-        const nameREGEX = /[^\s][a-z|\s]*$/i;
+        const nameREGEX = /[^\s][a-z|\s]*$/i; 
         nameResult = nameREGEX.test(nameInputValue);
+        return nameResult;
     }
 
 
@@ -211,8 +212,9 @@ const cvvInput = document.getElementById('cvv');
 
     function emailValidationTest(email) {
         const emailInputValue = email.value;
-        const emailREGEX = /^[^@\s]+@[^@\s]+\.(com)$/i; 
+        const emailREGEX = /^[^@\s]+@[^@\s]+\.(com)$/i; // requirement: A few characters for the username, followed by "@", followed by a few more characters and a ".com" 
         emailResult = emailREGEX.test(emailInputValue);
+        return emailResult;
     }
 
 
@@ -230,7 +232,7 @@ const cvvInput = document.getElementById('cvv');
             } else if (checkbox === false) {
             checkedItems -= 1;
             }
-    })
+    }) // requirement: at least one activity checked
  
 
     /*
