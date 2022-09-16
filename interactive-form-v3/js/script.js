@@ -195,7 +195,7 @@ const cvvInput = document.getElementById('cvv');
 
     let nameResult = '';
 
-    function nameValidation(name) {
+    function nameValidationTest(name) {
         const nameInputValue = name.value;
         const nameREGEX = /[^\s][a-z|\s]*$/i;
         nameResult = nameREGEX.test(nameInputValue);
@@ -209,7 +209,7 @@ const cvvInput = document.getElementById('cvv');
 
     let emailResult = '';
 
-    function emailValidation(email) {
+    function emailValidationTest(email) {
         const emailInputValue = email.value;
         const emailREGEX = /^[^@\s]+@[^@\s]+\.(com)$/i; 
         emailResult = emailREGEX.test(emailInputValue);
@@ -223,7 +223,7 @@ const cvvInput = document.getElementById('cvv');
 
     let checkedItems = 0; // *** move to global scope
 
-    function activitiesValidation() { // *** i can call an anony function
+    function activitiesValidationTest() { // *** i can call an anony function
         activities.addEventListener('change', e => {
             let checkbox = e.target.checked;
             if (checkbox === true) {
@@ -240,7 +240,7 @@ const cvvInput = document.getElementById('cvv');
     
     let cardNumResult = '';
 
-    function cardNumValidation(creditcard) {
+    function cardNumValidationTest(creditcard) {
         const cardNumInputValue = creditcard.value;
         const cardNumREGEX = /^\d{13,16}$/;
         cardNumResult = cardNumREGEX.test(cardNumInputValue);
@@ -253,7 +253,7 @@ const cvvInput = document.getElementById('cvv');
 
     let zipcodeResult = '';
 
-    function zipcodeValidation(zip) {
+    function zipcodeValidationTest(zip) {
         const zipcodeInputValue = zip.value;
         const zipcodeREGEX = /^\d{5}$/;
         zipcodeResult = zipcodeREGEX.test(zipcodeInputValue);
@@ -267,7 +267,7 @@ const cvvInput = document.getElementById('cvv');
 
     let cvvResult = '';
 
-    function cvvValidation(cvv) {
+    function cvvValidationTest(cvv) {
         const cvvInputValue = cvv.value;
         const cvvREGEX = /^\d{3}$/;
         cvvResult = cvvREGEX.test(cvvInputValue);
@@ -432,7 +432,7 @@ form.addEventListener('submit', e =>  {
     1. Calling Name Validation Function & Conditional
     */
 
-    nameValidation(nameInput);
+    nameValidationTest(nameInput);
     if (nameResult === false) {
         e.preventDefault();
         notValidName();
@@ -446,7 +446,7 @@ form.addEventListener('submit', e =>  {
     2. Calling Email Validation Function & Conditional
     */
 
-    emailValidation(emailInput);
+    emailValidationTest(emailInput);
     if (emailResult === false) {
         e.preventDefault();
         notValidEmail();
@@ -459,7 +459,7 @@ form.addEventListener('submit', e =>  {
     3. Activties Section Checking Items with Conditional
     */
 
-    activitiesValidation();
+    activitiesValidationTest();
     if (checkedItems == false) {
         e.preventDefault();
         notValidActivities();
@@ -479,7 +479,7 @@ form.addEventListener('submit', e =>  {
 
     /* 4. Calling Card Number Validation Function & Conditional */
 
-        cardNumValidation(cardNumInput);
+        cardNumValidationTest(cardNumInput);
         if (cardNumResult === false) {
             e.preventDefault();
             notValidCardNum();
@@ -490,7 +490,7 @@ form.addEventListener('submit', e =>  {
 
     /* 5. Calling ZipCode Validation Function & Conditional */
 
-        zipcodeValidation(zipcodeInput);
+        zipcodeValidationTest(zipcodeInput);
         if (zipcodeResult == false) {
             e.preventDefault();
             notValidZipcode();
@@ -501,7 +501,7 @@ form.addEventListener('submit', e =>  {
     
     /* 6. Calling CVV Validation Function & Conditional */
 
-        cvvValidation(cvvInput);
+        cvvValidationTest(cvvInput);
         if (cvvResult == false) {
             e.preventDefault();
             notValidCvv();
