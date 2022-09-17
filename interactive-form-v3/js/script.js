@@ -331,7 +331,6 @@ const cvvInput = document.getElementById('cvv');
     3. Activities Error Indication 
     */
 
-    //const activitiesLabel = emailInput.parentElement;
     const activitiesHint = activities.lastElementChild;
 
     
@@ -343,11 +342,9 @@ const cvvInput = document.getElementById('cvv');
     
     
     function isValidActivties() {
-    //if (checkedItems > 0) {
         activities.classList.add('valid');
         activities.classList.remove('not-valid');
         activitiesHint.style.display = 'none';
-    //}
   }
 
 
