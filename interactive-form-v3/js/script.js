@@ -212,7 +212,7 @@ const cvvInput = document.getElementById('cvv');
 
     function emailValidationTest(email) {
         const emailInputValue = email.value;
-        const emailREGEX = /^[^@\s]+@[^@\s]+\.(com)$/i; // requirement: A few characters for the username, followed by "@", followed by a few more characters and a ".com" 
+        const emailREGEX = /^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i; // requirement: A few characters for the username, followed by "@", followed by a few more characters and a ".com" 
         emailResult = emailREGEX.test(emailInputValue);
         return emailResult;
     }
